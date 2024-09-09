@@ -1,0 +1,5 @@
+{
+  "emailTxt": "[name=email]",
+  "passwordTxt": "[name=password]",
+  "loginBtn": ".inline-flex"
+}
