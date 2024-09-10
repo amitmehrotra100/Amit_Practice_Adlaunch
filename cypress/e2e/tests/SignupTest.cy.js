@@ -19,6 +19,7 @@ describe("Sign-up Process", () =>{
         .get(Signup.AgencyPlan).click()
 
         cy.get(Signup.TermAndConditioncheckbox).click();
+        cy.screenshot("Signup/SS01/full-page");
         cy.get(Signup.paybutton).click();
         
         cy.IframeContent(Signup.iframeTxt)
@@ -39,24 +40,30 @@ describe("Sign-up Process", () =>{
             .should("have.value", SignupTestData.cardHolderName);
             cy.IframeContent(Signup.iframeTxt)
             .find(Signup.payButton).click();
+            cy.screenshot("Signup/SS02/full-page");
             cy.wait(20000);
         cy.url().should('include','/onboarding');
+        cy.screenshot("Signup/SS03/full-page");
 
         cy.get(Signup.FirstName).should('be.visible').type(SignupTestData.FirstName);
         cy.get(Signup.LastName).type(SignupTestData.LastName);
         cy.get(Signup.PhoneNumber).type(SignupTestData.PhoneNumnber);
+        cy.screenshot("Signup/SS04/full-page");
         cy.get(Signup.Button).click();
         cy.get(Signup.BusinessProfileTxt).should('have.text', SignupTestData.BusinessProfileTxt);
+        cy.screenshot("Signup/SS05/full-page");
 
         cy.get(Signup.BusinessName).type(SignupTestData.BusinessName);
         cy.get(Signup.NicheList).click();
         cy.get(Signup.NicheData).type(SignupTestData.NicheData);
         
         cy.get(Signup.StreetAddress).type(`${SignupTestData.StreetAddressData}{enter}`).should('be.visible').get(Signup.StrreetAddressDropdown).first().click();
+        cy.screenshot("Signup/SS06/full-page");
         cy.get(Signup.BusinessProfileContinueButton).should("be.visible").click();
         cy.get(Signup.ConnectYourAssettxt).should('have.text', SignupTestData.ConnectAssettxt);
         cy.get(Signup.SkipAndContinue).click();
         cy.url().should('include','/agency/dashboard');
+        cy.screenshot("Signup/SS07/full-page");
 
 
 
