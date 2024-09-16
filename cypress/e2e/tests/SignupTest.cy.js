@@ -10,7 +10,7 @@ describe("Sign-up Process", () =>{
         cy.visit("https://app-qa.adlaunch.io/");
         SPage.Signup.click();
         cy.url().should('include','/signup');
-        cy.get('.py-2').should("be.visible");
+        cy.get(Signup.AccountSetuptxt).should("be.visible").contains(SignupTestData.Accountsetuptxt);
         cy.get(Signup.Emailaddress)
        .type(SignupTestData.Email)
        .should('have.value',SignupTestData.Email);
@@ -41,9 +41,8 @@ describe("Sign-up Process", () =>{
             cy.IframeContent(Signup.iframeTxt)
             .find(Signup.payButton).click();
             cy.screenshot("Signup/SS02/full-page");
-            cy.wait(20000);
-        cy.url().should('include','/onboarding');
-        cy.screenshot("Signup/SS03/full-page");
+            cy.location("pathname", { timeout: 10000 }).should('include', "/onboarding");
+            cy.screenshot("Signup/SS03/full-page");
 
         cy.get(Signup.FirstName).should('be.visible').type(SignupTestData.FirstName);
         cy.get(Signup.LastName).type(SignupTestData.LastName);

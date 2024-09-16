@@ -26,6 +26,7 @@
     "ConnectYourAssettxt": "h4[class='text-center text-lg md:text-[22px] font-semibold text-gray-700 mb-6']",
     "SkipAndContinue": ".text-sm.cursor-pointer",
     "TermAndConditioncheckbox": "#termscondition",
-    "paybutton": "button:not([disabled]):not([aria-haspopup=listbox])"
+    "paybutton": "button:not([disabled]):not([aria-haspopup=listbox])",
+    "AccountSetuptxt": ".mb-6"
 
 }
