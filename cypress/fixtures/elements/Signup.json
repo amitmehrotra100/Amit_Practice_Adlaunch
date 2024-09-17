@@ -27,6 +27,7 @@
     "SkipAndContinue": ".text-sm.cursor-pointer",
     "TermAndConditioncheckbox": "#termscondition",
     "paybutton": "button:not([disabled]):not([aria-haspopup=listbox])",
-    "AccountSetuptxt": ".mb-6"
+    "AccountSetuptxt": ".mb-6",
+    "SignupClick": ".text-info-500"
 
 }

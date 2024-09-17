@@ -36,7 +36,7 @@ module.exports = {
   env: {
     apiUrl: "https://app-qaapi.adlaunch.io/api/v1",
     grepFilterSpecs: true,
-    USERNAME:'amanpreet'
+    USERNAME:'amit'
     // grep: "viewport",
   },
   pageLoadTimeout: 120000,

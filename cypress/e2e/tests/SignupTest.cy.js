@@ -2,18 +2,26 @@
 import SignupPage from "../../pages/SignupPage";
 import SignupTestData from "../../fixtures/testdata/SignupTestData.json";
 import Signup from "../../fixtures/elements/Signup.json";
-const SPage = new SignupPage();
+import util from "../../pages/util"
+const utilPage = new util();
 
 describe("Sign-up Process", () =>{
-
+    beforeEach(() => {
+        cy.visit("/");
+    });
     it("Signup-Redirection", () =>{
-        cy.visit("https://app-qa.adlaunch.io/");
-        SPage.Signup.click();
+        //cy.visit("https://app-qa.adlaunch.io/");
+        cy.get(Signup.SignupClick).click({ multiple: true });
         cy.url().should('include','/signup');
         cy.get(Signup.AccountSetuptxt).should("be.visible").contains(SignupTestData.Accountsetuptxt);
+        const emailToUse = utilPage.generateSimpleEmail("logiciel.io");
         cy.get(Signup.Emailaddress)
-       .type(SignupTestData.Email)
-       .should('have.value',SignupTestData.Email);
+        .type(emailToUse)
+        .should("be.visible")
+        .and("have.value", emailToUse);
+        //cy.get(Signup.Emailaddress)
+       //.type(SignupTestData.Email)
+       //.should('have.value',SignupTestData.Email);
 
         cy.get(Signup.Selectplan).click()
         .get(Signup.AgencyPlan).click()
@@ -53,6 +61,11 @@ describe("Sign-up Process", () =>{
         cy.screenshot("Signup/SS05/full-page");
 
         cy.get(Signup.BusinessName).type(SignupTestData.BusinessName);
+        //const Business_Name = utilPage.generateRandomName(2,50);
+        //cy.get(Signup.BusinessName)
+        //.type(Business_Name)
+        //.should("be.visible")
+        //.and("have.value", Business_Name);
         cy.get(Signup.NicheList).click();
         cy.get(Signup.NicheData).type(SignupTestData.NicheData);
         
