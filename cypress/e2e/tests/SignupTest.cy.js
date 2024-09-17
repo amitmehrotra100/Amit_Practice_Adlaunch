@@ -19,9 +19,6 @@ describe("Sign-up Process", () =>{
         .type(emailToUse)
         .should("be.visible")
         .and("have.value", emailToUse);
-        //cy.get(Signup.Emailaddress)
-       //.type(SignupTestData.Email)
-       //.should('have.value',SignupTestData.Email);
 
         cy.get(Signup.Selectplan).click()
         .get(Signup.AgencyPlan).click()
@@ -60,12 +57,12 @@ describe("Sign-up Process", () =>{
         cy.get(Signup.BusinessProfileTxt).should('have.text', SignupTestData.BusinessProfileTxt);
         cy.screenshot("Signup/SS05/full-page");
 
-        cy.get(Signup.BusinessName).type(SignupTestData.BusinessName);
-        //const Business_Name = utilPage.generateRandomName(2,50);
-        //cy.get(Signup.BusinessName)
-        //.type(Business_Name)
-        //.should("be.visible")
-        //.and("have.value", Business_Name);
+        //cy.get(Signup.BusinessName).type(SignupTestData.BusinessName);
+        const Business_Name = utilPage.generateRandomName(2,50);
+        cy.get(Signup.BusinessName)
+        .type(Business_Name)
+        .should("be.visible")
+        .and("have.value", Business_Name);
         cy.get(Signup.NicheList).click();
         cy.get(Signup.NicheData).type(SignupTestData.NicheData);
         
