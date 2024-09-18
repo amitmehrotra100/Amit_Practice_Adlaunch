@@ -57,7 +57,7 @@ describe("Sign-up Process", () =>{
         cy.get(Signup.BusinessProfileTxt).should('have.text', SignupTestData.BusinessProfileTxt);
         cy.screenshot("Signup/SS05/full-page");
 
-        //cy.get(Signup.BusinessName).type(SignupTestData.BusinessName);
+        
         const Business_Name = utilPage.generateRandomName(2,50);
         cy.get(Signup.BusinessName)
         .type(Business_Name)
@@ -73,6 +73,7 @@ describe("Sign-up Process", () =>{
         cy.get(Signup.SkipAndContinue).click();
         cy.url().should('include','/agency/dashboard');
         cy.screenshot("Signup/SS07/full-page");
+        
 
 
 

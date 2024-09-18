@@ -28,6 +28,6 @@
     "TermAndConditioncheckbox": "#termscondition",
     "paybutton": "button:not([disabled]):not([aria-haspopup=listbox])",
     "AccountSetuptxt": ".mb-6",
-    "SignupClick": ".text-info-500"
+    "SignupClick": "a[class='text-info-500 hover:text-info-400']"
 
 }
