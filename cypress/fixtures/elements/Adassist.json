@@ -1,0 +1,14 @@
+{
+    "AccountSetting": "#menu-button",
+    "Profilebutton": "button[id='headlessui-menu-item-:rcj:']",
+    "Whitelabelcopybutton": "span.cursor-pointer svg[width='17'][height='16']",
+    "Whitelabeltxt": ".text-sm font-medium",
+    "Adassistlogintxt" : "h4[class='mb-6 text-xl font-medium text-center sm:text-2xl text-gray-31']",
+    "AdassistSignuplink": ".text-blue-4",
+    "Adassistsignupstep1": "h4[class ='mb-6 text-xl font-medium text-center sm:text-2xl text-gray-31']",
+    "FirstName": "input[placeholder='Enter first name']",
+    "LastName": "input[placeholder='Enter last name']",
+    "PhoneNumber": "input[placeholder='Enter phone number']",
+    "Button": "button[type='button']",
+    "BusinessProfileTxt" : "h4[class='text-center text-lg md:text-[22px] font-semibold text-gray mb-6']"
+}

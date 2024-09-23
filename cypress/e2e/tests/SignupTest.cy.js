@@ -74,6 +74,7 @@ describe("Sign-up Process", () =>{
         cy.url().should('include','/agency/dashboard');
         cy.screenshot("Signup/SS07/full-page");
         
+        
 
 
 

@@ -68,3 +68,9 @@ Cypress.on("uncaught:exception", (err, runnable) => {
   // failing the test
   return false;
 });
+
+Cypress.Commands.add('copyToClipboard', (text) => {
+  cy.window().then((win) => {
+    win.navigator.clipboard.writeText(text);
+  });
+});
