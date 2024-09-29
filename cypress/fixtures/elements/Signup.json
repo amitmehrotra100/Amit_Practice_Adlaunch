@@ -18,7 +18,7 @@
     "Button": "button[type='button']",
     "BusinessProfileTxt" : "h4[class='text-center text-lg md:text-[22px] font-semibold text-gray mb-6']",
     "BusinessName": "input[placeholder='Enter business name']",
-    "NicheList": ".ad-select__control.css-13cymwt-control",
+    "NicheList": "button:nth-of-type(1)",
     "NicheData": ".ad-select__input-container.css-19bb58m",
     "StreetAddress" : "input[placeholder='Enter Street Address']",
     "StrreetAddressDropdown": ".autocomplete-dropdown-container",
