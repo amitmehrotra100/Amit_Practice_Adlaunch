@@ -13,8 +13,10 @@
     "Button": "button[type='submit']",
     "BusinessProfileTxt" : "h4:nth-of-type(1)",
     "BusinessName": "input[placeholder='Enter business name']",
-    "NicheList": "'button#headlessui-listbox-button-\\:r0\\:'",
-    "NicheData": ".ad-select__input-container.css-19bb58m",
+    "NicheList": "button:nth-of-type(1)",
+    "NicheData": "input[placeholder='Search...']",
+    "Nichesearchresult": "span[data-tooltip-id='tooltip-5-0']",
     "StreetAddress" : "input[placeholder='Enter Street Address']",
-    "StrreetAddressDropdown": ".autocomplete-dropdown-container"
+    "StrreetAddressDropdown": ".autocomplete-dropdown-container",
+    "Continuebutton": "button[type='button']"
 }
