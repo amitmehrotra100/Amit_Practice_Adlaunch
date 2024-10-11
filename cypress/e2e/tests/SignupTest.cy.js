@@ -15,6 +15,7 @@ describe("Sign-up Process", () =>{
         cy.url().should('include','/signup');
         cy.get(Signup.AccountSetuptxt).should("be.visible").contains(SignupTestData.Accountsetuptxt);
         const emailToUse = utilPage.generateSimpleEmail("logiciel.io");
+        module.exports = { emailToUse };
         cy.get(Signup.Emailaddress)
         .type(emailToUse)
         .should("be.visible")
