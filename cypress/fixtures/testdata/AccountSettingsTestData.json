@@ -14,5 +14,8 @@
     "BusinessPhone": "9620200173",
     "BusinessAddressAgency": "New Delhi, Delhi, India {enter}",
     "TypeANiche": "Advertising Agency {enter}",
-    "BusinessNameAgency": "Kiaan and company"
+    "BusinessNameAgency": "Kiaan and company",
+    "HighLevel": "HighLevelConnect",
+    "Facebook": "Facebook",
+    "ChatGpt": "Chat GPT API Key"
 }

@@ -29,5 +29,8 @@
     "CountryCodeAgency": "select[name='businessPhoneCountry']",
     "BusinessAddressdropdown": ".autocomplete-dropdown-container.location-search",
     "SaveChnagesButtonAgency": "button.bg-primary-600",
-    "BillingPlan": "div.w-2.h-2.rounded-full.bg-green-8"
+    "BillingPlan": "div.w-2.h-2.rounded-full.bg-green-8",
+    "HighLevel": "div.rounded-lg.border.bg-white",
+    "Facebook": ".flex.flex-col.text-base.font-medium.text-gray",
+    "ChatGpt": ".text-xs\\/4.text-blue.font-medium.tracking-\\[3\\%\\]"
 }
