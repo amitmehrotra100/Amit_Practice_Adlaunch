@@ -53,7 +53,7 @@ describe("Sign-up Process", () => {
     cy.get(Clients.ClientsTableNiche2).contains("Boating Sales");
 
     // Capture the text of the first client name
-    cy.get(Clients.CleintsTableFirstElement).invoke("text")
+    cy.get(Clients.CleintsTableFirstElement).first().invoke("text")
       .then((cellText) => {
         cy.log(`Client name: ${cellText}`);
         cy.wrap(cellText).as('clientTableFirstName');
@@ -69,10 +69,11 @@ describe("Sign-up Process", () => {
     cy.get(Clients.HideClientsToggleButton).click();
 
     //Filter and trace values across pagination
-    cy.get('table tbody tr td:nth-child(2)').then(($cells) => {
+    cy.get('table tbody tr td:nth-child(2)').invoke("text").then(($cells) => {
       const values = $cells.map((index, cell) => Cypress.$(cell).text().trim()).get();
-      const firstTenValues = values.slice(0, 10);
-      cy.log(firstTenValues);
+      cy.log(values);
+      // const firstTenValues = values.slice(0, 10);
+      // cy.log(firstTenValues);
 
       // firstTenValues.forEach((value) => {
       //   cy.get('@clientTableFirstName').then((clientTableFirstName) => {
