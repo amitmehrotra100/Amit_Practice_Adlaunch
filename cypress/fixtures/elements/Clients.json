@@ -22,5 +22,7 @@
     "HideClientsToggleButton": "button[role='switch']",
     "HiddenClientName": "span[data-tooltip-class-name='shadow-md bg-white z-50 border']",
     "HiddenclientsTable": "div.text-md.text-gray",
-    "AssignNIcheButton": "button[type='button'].text-sm.border-blue.bg-blue"
+    "AssignNIcheButton": "button[type='button'].text-sm.border-blue.bg-blue",
+    "CleintsTableFirstElement": ".text-left .text-md.text-gray span",
+    "Hiddenclientstablefirstelement": ".text-left .text-md.text-gray "
 }
