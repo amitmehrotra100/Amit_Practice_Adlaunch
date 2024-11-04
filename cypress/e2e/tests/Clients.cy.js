@@ -24,15 +24,18 @@ describe("Sign-up Process", () => {
     // Select Niche and Save
     cy.get(Clients.Niche).last().should('be.visible').click();
     cy.get(Clients.SaveButton).click();
+    cy.screenshot("Clients/SS001/full-page");
 
     // Search for a Business Niche
     cy.get(Clients.BusinessNiche).last().should("be.visible").click();
     cy.get(Clients.SearchNiche).should("be.visible").type("Auto Dealers");
     cy.get(Clients.NicheList).contains("Auto Dealers").click();
+    cy.screenshot("Clients/SS002/full-page");
 
     // Save Niche
     cy.get(Clients.SaveButton).click();
     cy.get(Clients.ToastMessage).should("be.visible");
+    //cy.screenshot("Clients/SS004/full-page");
 
     // Verify the niche in the table
     cy.get(Clients.ClientsTableNiche).contains("Auto Dealers");
@@ -46,8 +49,10 @@ describe("Sign-up Process", () => {
     cy.get(Clients.NicheDropdownpopupCrossIcon).click();
     cy.get(Clients.SelectBusinessNiche).click();
     cy.contains('span', 'Boating Sales').click();
+    //cy.screenshot("Clients/SS005/full-page");
     cy.get(Clients.AssignNIcheButton).click();
     cy.contains('Niche updated successfully').should("have.text", "Niche updated successfully");
+    cy.screenshot("Clients/SS003/full-page");
 
     // Verify the updated niche in the table
     cy.get(Clients.ClientsTableNiche2).contains("Boating Sales");
@@ -64,85 +69,59 @@ describe("Sign-up Process", () => {
     cy.get("button:contains('Hide Client')").click();
     cy.get(Clients.HideClientButton).click();
     cy.get(Clients.ToastMessageHideclients).should("be.visible");
+    cy.screenshot("Clients/SS004/full-page");
 
     // Toggle the hidden clients view
     cy.get(Clients.HideClientsToggleButton).click();
-
-    //Filter and trace values across pagination
-    cy.get('table tbody tr td:nth-child(2)').invoke("text").then(($cells) => {
-      const values = $cells.map((index, cell) => Cypress.$(cell).text().trim()).get();
-      cy.log(values);
-      // const firstTenValues = values.slice(0, 10);
-      // cy.log(firstTenValues);
-
-      // firstTenValues.forEach((value) => {
-      //   cy.get('@clientTableFirstName').then((clientTableFirstName) => {
-      //     traceValueAcrossPagination(value, clientTableFirstName, 8);
-      //   });
-      // });
+    cy.screenshot("Clients/SS005/full-page");
+    cy.get('@clientTableFirstName').then((clientTableFirstName) => {
+      searchAcrossPages(clientTableFirstName);
+    });
     });
   });
-});
 
-// Recursive function to trace value across pagination
-// Function to trace a value across pagination with dynamic page limit
-// function traceValueAcrossPagination(elementLocator, expectedValue, maxPageLimit) {
-//   let currentPage = 1; // Start from the first page
-//   let lastPageReached = false; // Flag to indicate if the last page is reached
+function searchAcrossPages(expectedValue, currentPage = 1, maxPageLimit = 20) {
+    if (currentPage > maxPageLimit) {
+      cy.log('Reached the maximum page limit without finding the client.');
+      return;
+    }
+  
+    cy.log(`Searching for "${expectedValue}" on page ${currentPage}`);
+  
+    // Check if the expected value exists on the current page
+    cy.get(':nth-child(1)  :nth-child(2) > .flex > .text-gray  span').then(($cells) => {
+        const values = [];
 
-//   function searchInPage() {
-//     if (lastPageReached || currentPage > maxPageLimit) {
-//       cy.log('Stopping pagination - last page reached or max page limit exceeded.');
-//       return;
-//     }
-
-//     cy.log(`Searching on page ${currentPage}`);
-
-//     // Check if the expected value exists on the current page
-//     cy.get('body').then(($body) => {
-//       if ($body.find(elementLocator).length > 0) {
-//         cy.get(elementLocator).each(($el) => {
-//           const actualValue = $el.text().trim();
-//           if (actualValue === expectedValue) {
-//             cy.log('Found the value: ' + actualValue);
-//             lastPageReached = true; // Stop searching if found
-//             return false; // Break out of the .each loop
-//           }
-//         });
-//       }
-
-//       // Selector for pagination buttons, adapted for your UI
-//       const pageSelector = 'ul[aria-label="Pagination"] li a';
-
-//       // Find the current active page and the next page
-//       cy.get(pageSelector).then(($paginationLinks) => {
-//         const totalPages = $paginationLinks.length;
-        
-//         // Ensure we don't exceed the max page limit
-//         if (currentPage < totalPages && currentPage < maxPageLimit) {
-//           const nextPageNumber = currentPage + 1;
-          
-//           // Click the next page based on the page number
-//           cy.get(pageSelector)
-//             .contains(nextPageNumber.toString())
-//             .should('be.visible')
-//             .click()
-//             .then(() => {
-//               cy.wait(500); // Wait for the page to load, adjust if needed
-//               currentPage += 1; // Increment page counter
-//               searchInPage(); // Recursive call for the next page
-//             });
-//         } else {
-//           cy.log('No more pages or reached the max page limit.');
-//           lastPageReached = true; // Stop if no more pages
-//         }
-//       });
-//     });
-//   }
-
-//   searchInPage(); // Start the search process
-// }
-
+  // Loop through each cell and trim whitespace
+  $cells.each((index, cell) => {
+    const cellText = Cypress.$(cell).text().trim();
+    if (cellText) {
+      values.push(cellText);
+    }
+  });
+   // Debug: log all values on the current page
+   cy.log(`Values on page ${currentPage}: ${values.join(', ')}`);
+if (values.includes(expectedValue)) {
+    cy.log(`Found the client "${expectedValue}" on page ${currentPage}`);
+    return; // Exit the function as we found the value
+  } 
+  else {
+    cy.log(`"${expectedValue}" not found on page ${currentPage}.`);
+  }
+      // Click the next page
+      const pageSelector = 'ul[aria-label="Pagination"] li a';
+      cy.get(pageSelector).contains((currentPage + 1).toString()).then(($nextPage) => {
+        if ($nextPage.length) {
+          cy.log(`Going to the next page: ${currentPage + 1}`);
+          cy.wrap($nextPage).click().then(() => {
+            searchAcrossPages(expectedValue, currentPage + 1, maxPageLimit); // Recursive call for the next page
+          });
+        } else {
+          cy.log('No more pages to navigate.');
+        }
+      });
+    });
+  }
 
 
 
