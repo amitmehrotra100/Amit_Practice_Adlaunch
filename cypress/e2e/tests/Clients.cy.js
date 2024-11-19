@@ -18,8 +18,14 @@ describe("Sign-up Process", () => {
     cy.get(Clients.ClientTable).first();
 
     // Open the action menu (three-dot icon) and click View/Edit
-    cy.get(Clients.threedoticon).eq(1).click();
-    cy.get(Clients["View/Edit"]).eq(0).click();
+    cy.get(Clients.threedoticon).then(($icons) => {
+      cy.wrap($icons[0]).click(); // Index is zero-based.
+    });
+    
+    cy.get(Clients["View/Edit"]).then(($buttons) => {
+      cy.wrap($buttons[0]).click(); // Index is zero-based.
+    });
+    
 
     // Select Niche and Save
     cy.get(Clients.Niche).last().should('be.visible').click();
@@ -42,8 +48,14 @@ describe("Sign-up Process", () => {
 
     // Reopen the client menu and select a different niche
     cy.get(Clients.ClientTable).first();
-    cy.get(Clients.threedoticon).eq(1).click();
-    cy.get(Clients.ClientMenudropdown).eq(2).click();
+    cy.get(Clients.threedoticon).then(($icons) => {
+      cy.wrap($icons[0]).click(); // Index is zero-based.
+    });
+    
+    cy.get(Clients.ClientMenudropdown).then(($dropdowns) => {
+      cy.wrap($dropdowns[2]).click(); // Index is zero-based.
+    });
+    
 
     // Close the popup and select a new niche
     cy.get(Clients.NicheDropdownpopupCrossIcon).click();
@@ -65,7 +77,9 @@ describe("Sign-up Process", () => {
       });
 
     // Hide the client and confirm the action
-    cy.get(Clients.threedoticon).eq(1).click();
+    cy.get(Clients.threedoticon).then(($icons) => {
+      cy.wrap($icons[0]).click(); // Index is zero-based.
+    });    
     cy.get("button:contains('Hide Client')").click();
     cy.get(Clients.HideClientButton).click();
     cy.get(Clients.ToastMessageHideclients).should("be.visible");
@@ -77,8 +91,8 @@ describe("Sign-up Process", () => {
     cy.get('@clientTableFirstName').then((clientTableFirstName) => {
       searchAcrossPages(clientTableFirstName);
     });
-    });
   });
+   });
 
 function searchAcrossPages(expectedValue, currentPage = 1, maxPageLimit = 20) {
     if (currentPage > maxPageLimit) {
@@ -89,7 +103,7 @@ function searchAcrossPages(expectedValue, currentPage = 1, maxPageLimit = 20) {
     cy.log(`Searching for "${expectedValue}" on page ${currentPage}`);
   
     // Check if the expected value exists on the current page
-    cy.get(':nth-child(1)  :nth-child(2) > .flex > .text-gray  span').then(($cells) => {
+    cy.get(Clients.CellsActualValues).then(($cells) => {
         const values = [];
 
   // Loop through each cell and trim whitespace
@@ -109,7 +123,7 @@ if (values.includes(expectedValue)) {
     cy.log(`"${expectedValue}" not found on page ${currentPage}.`);
   }
       // Click the next page
-      const pageSelector = 'ul[aria-label="Pagination"] li a';
+      const pageSelector = Clients.PaginationSelector;
       cy.get(pageSelector).contains((currentPage + 1).toString()).then(($nextPage) => {
         if ($nextPage.length) {
           cy.log(`Going to the next page: ${currentPage + 1}`);

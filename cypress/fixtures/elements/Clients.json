@@ -9,7 +9,7 @@
     "NicheList": "ul[role='listbox']",
     "ToastMessage": "div[role='alert'] div:nth-child(2)",
     "ClientsTableNiche": "span[data-tooltip-id='contact-businessName-Auto Dealers']",
-    "threedoticon": "div[data-headlessui-state]",
+    "threedoticon": ".h-7",
     "AssignNiche": "button[id='headlessui-menu-item-\\:rg\\:']",
     "ClientMenudropdown": "button[role='menuitem']",
     "NicheDropdownpopupCrossIcon":".px-6 [id*=headlessui-listbox-button-] .w-5" ,
@@ -24,5 +24,7 @@
     "HiddenclientsTable": "div.text-md.text-gray",
     "AssignNIcheButton": "button[type='button'].text-sm.border-blue.bg-blue",
     "CleintsTableFirstElement": ".text-left .text-md.text-gray span",
-    "Hiddenclientstablefirstelement": ".text-left .text-md.text-gray "
+    "Hiddenclientstablefirstelement": ".text-left .text-md.text-gray ",
+    "CellsActualValues": ":nth-child(1)  :nth-child(2) > .flex > .text-gray  span",
+    "PaginationSelector": "ul[aria-label='Pagination'] li a"
 }
