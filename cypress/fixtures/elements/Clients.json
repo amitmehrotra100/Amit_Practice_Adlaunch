@@ -6,7 +6,7 @@
     "SaveButton": "button[class='w-full px-5 py-3 bg-blue hover:bg-blue text-white flex items-center justify-center gap-1.5 text-sm']",
     "SearchNiche": "input[placeholder='Search Categories & Niches']",
     "BusinessNiche": "[id*=headlessui-listbox-button-] .w-5",
-    "NicheList": "ul[role='listbox']",
+    "NicheList": ".ml-3.flex-1",
     "ToastMessage": "div[role='alert'] div:nth-child(2)",
     "ClientsTableNiche": "span[data-tooltip-id='contact-businessName-Auto Dealers']",
     "threedoticon": ".h-7",
@@ -26,5 +26,7 @@
     "CleintsTableFirstElement": ".text-left .text-md.text-gray span",
     "Hiddenclientstablefirstelement": ".text-left .text-md.text-gray ",
     "CellsActualValues": ":nth-child(1)  :nth-child(2) > .flex > .text-gray  span",
-    "PaginationSelector": "ul[aria-label='Pagination'] li a"
+    "PaginationSelector": "ul[aria-label='Pagination'] li a",
+    "ViewEditButton" : "[id*=headlessui-menu-item-]",
+    "SelectBusinessNichepopup": ".mr-3"
 }

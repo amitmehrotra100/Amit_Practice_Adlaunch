@@ -1,4 +1,4 @@
-export default class util {
+export default class Util {
     generateSimpleEmail(domain) {
        // Get the username from the environment variables
        const username = Cypress.env('USERNAME');

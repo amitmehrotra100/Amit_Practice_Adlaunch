@@ -74,3 +74,12 @@ Cypress.Commands.add('copyToClipboard', (text) => {
     win.navigator.clipboard.writeText(text);
   });
 });
+
+Cypress.Commands.add('selectOption', (dropdownSelector, optionText) => {
+  cy.get(dropdownSelector).each(($el) => {
+    if ($el.text() === optionText) {
+      cy.wrap($el).click({ force: true });
+      return false;
+    }
+  });
+});

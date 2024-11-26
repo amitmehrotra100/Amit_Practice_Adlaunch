@@ -1,3 +1,13 @@
 {
-    "HiddenClientName": "Blanda - O'Keefe"
+    "HiddenClientName": "Blanda - O'Keefe",
+    "ViewEditClient": "View / Edit",
+    "AssignNichebutton": "Assign Niche",
+    "NicheListData": "Auto Dealers",
+    "ToastMessage": "Client updated successfully!",
+    "AssignNicheButton": "Assign Niche",
+    "BusinessNiche": "Boating Sales",
+    "ClientTableData": "Boating Sales",
+    "HideClientButton": "Hide Client",
+    "NicheToastMessage": "Niche updated successfully",
+    "ClientToastMessage": "Client Hidden Successfully!"
 }

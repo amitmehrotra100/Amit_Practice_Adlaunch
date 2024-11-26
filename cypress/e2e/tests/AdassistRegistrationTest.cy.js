@@ -1,10 +1,8 @@
 //<reference types="cypress"/>
-import loginTestData from "../../fixtures/testdata/loginTestData.json";
 import { LoginPage } from "../../pages/LoginPage";
-import SignupTestData from "../../fixtures/testdata/SignupTestData.json";
 import Signup from "../../fixtures/elements/Signup.json";
-import AdassistTestData from "../../fixtures/testdata/AdassistTestData.json";
-import Adassist from "../../fixtures/elements/Adassist.json";
+import AdassistTestData from "../../fixtures/testdata/adassisttestdata.json";
+import Adassist from "../../fixtures/elements/adassist.json";
 import util from "../../pages/util"
 const utilPage = new util();
 

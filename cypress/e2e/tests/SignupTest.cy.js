@@ -1,6 +1,5 @@
 //<reference types="cypress"/>
-import SignupPage from "../../pages/SignupPage";
-import SignupTestData from "../../fixtures/testdata/SignupTestData.json";
+import SignupTestData from "../../fixtures/testdata/signuptestdata.json";
 import Signup from "../../fixtures/elements/Signup.json";
 import util from "../../pages/util"
 const utilPage = new util();

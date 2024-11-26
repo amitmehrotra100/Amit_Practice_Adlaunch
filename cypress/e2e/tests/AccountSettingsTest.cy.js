@@ -1,10 +1,9 @@
 import SignupPage from "../../pages/SignupPage";
-import SignupTestData from "../../fixtures/testdata/SignupTestData.json";
-import Signup from "../../fixtures/elements/Signup.json";
-import loginTestData from "../../fixtures/testdata/loginTestData.json";
+import SignupTestData from "../../fixtures/testdata/signuptestdata.json";
+import loginTestData from "../../fixtures/testdata/logintestdata.json";
 import { LoginPage } from "../../pages/LoginPage";
-import AccountSettings from "../../fixtures/elements/AccountSettings.json";
-import AccountSettingsTestData from "../../fixtures/testdata/AccountSettingsTestData.json";
+import AccountSettings from "../../fixtures/elements/accountsettings.json";
+import AccountSettingsTestData from "../../fixtures/testdata/accountsettingstestdata.json";
 //const { emailToUse } = require('./SignupTest.cy.js');
 
 describe("Login_Process", () =>{
