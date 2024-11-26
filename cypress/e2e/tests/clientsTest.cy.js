@@ -1,7 +1,6 @@
 import Clients from "../../fixtures/elements/Clients.json";
 import ClientsTestData from "../../fixtures/testdata/clientstestdata.json";
 import loginTestData from "../../fixtures/testdata/logintestdata.json";
-import { LoginPage } from "../../pages/LoginPage";
 
 describe("Sign-up Process", () => {
   beforeEach(() => {
@@ -25,7 +24,7 @@ describe("Sign-up Process", () => {
 
     // Search for a Business Niche
     cy.get(Clients.BusinessNiche).last().should("be.visible").click();
-    cy.get(Clients.SearchNiche).should("be.visible").type("Auto Dealers");
+    cy.get(Clients.SearchNiche).should("be.visible").type(ClientsTestData.NicheData);
     cy.selectOption(Clients.NicheList, ClientsTestData.NicheListData);
     cy.screenshot("Clients/SS002/full-page");
 

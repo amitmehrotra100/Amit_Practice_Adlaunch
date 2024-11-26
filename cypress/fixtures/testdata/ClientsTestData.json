@@ -9,5 +9,6 @@
     "ClientTableData": "Boating Sales",
     "HideClientButton": "Hide Client",
     "NicheToastMessage": "Niche updated successfully",
-    "ClientToastMessage": "Client Hidden Successfully!"
+    "ClientToastMessage": "Client Hidden Successfully!",
+    "NicheData": "Auto Dealers"
 }
