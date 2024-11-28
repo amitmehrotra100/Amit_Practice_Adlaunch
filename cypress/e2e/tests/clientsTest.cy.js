@@ -4,7 +4,6 @@ import loginTestData from "../../fixtures/testdata/logintestdata.json";
 
 describe("Sign-up Process", () => {
   beforeEach(() => {
-    cy.visit("/");
     cy.userLogin(loginTestData.email, loginTestData.password);
     cy.url().should('include', '/agency/dashboard');
   });
@@ -12,10 +11,11 @@ describe("Sign-up Process", () => {
   it("Clients_Validations", () => {
     // Navigate to Clients tab
     cy.get(Clients.ClientTab).click();
-
+    cy.get(Clients.Clientlabel).should("be.visible").should("have.text", ClientsTestData.Clientlabel);
     // Select a client from the ClientTable
     cy.get(Clients.ClientTable).should("be.visible");
-    cy.get(Clients.threedoticon).first().click();
+    cy.screenshot("Clients/SS0001/full-page");
+    cy.get(Clients.threedoticon).first().click({force:true}); // Choosing the first element from many identified elements 
     cy.selectOption(Clients.ViewEditButton, ClientsTestData.ViewEditClient);
     // Select Niche and Save
     cy.get(Clients.Niche).last().should('be.visible').click();
@@ -30,41 +30,49 @@ describe("Sign-up Process", () => {
 
     // Save Niche
     cy.get(Clients.SaveButton).click();
+    cy.get(Clients.Clientlabel).should("be.visible").should("have.text", ClientsTestData.Clientlabel);
     cy.get(Clients.ToastMessage).should("be.visible").should("have.text", ClientsTestData.ToastMessage);
-    //cy.screenshot("Clients/SS004/full-page");
+    cy.screenshot("Clients/SS004/full-page");
 
     // Verify the niche in the table
-    cy.get(Clients.ClientsTableNiche).contains("Auto Dealers");
-
+    cy.get(Clients.ClientsTableNiche).should("have.text", ClientsTestData.NicheData);
+    cy.screenshot("Clients/SS0004/full-page");
     // Reopen the client menu and select a different niche
     cy.get(Clients.ClientTable).should("be.visible");
-    cy.get(Clients.threedoticon).first().click();
+    cy.get(Clients.threedoticon).first().click({force:true}); // Choosing the first element from many identified elements
     cy.selectOption(Clients.ViewEditButton, ClientsTestData.AssignNichebutton);
     // Close the popup and select a new niche
     cy.get(Clients.NicheDropdownpopupCrossIcon).click();
+    cy.screenshot("Clients/SS0007/full-page");
     cy.get(Clients.SelectBusinessNiche).click();
     cy.selectOption(Clients.SelectBusinessNichepopup, ClientsTestData.BusinessNiche);
+    cy.screenshot("Clients/SS0008/full-page");
     cy.get(Clients.AssignNIcheButton).click();
+    cy.get(Clients.Clientlabel).should("be.visible").should("have.text", ClientsTestData.Clientlabel);
     cy.get(Clients.ToastMessage).should("be.visible").should("have.text", ClientsTestData.NicheToastMessage);
     cy.screenshot("Clients/SS003/full-page");
     // Verify the updated niche in the table
     cy.selectOption(Clients.ClientsTableNiche2, ClientsTestData.ClientTableData);
     // Capture the text of the first client name
-    cy.get(Clients.CleintsTableFirstElement).first().invoke("text")
+    cy.get(Clients.CleintsTableFirstElement).first().invoke("text") // Choosing the first element from many identified elements
       .then((cellText) => {
         cy.log(`Client name: ${cellText}`);
         cy.wrap(cellText).as('clientTableFirstName');
       });
 
     // Hide the client and confirm the action
-    cy.get(Clients.threedoticon).first().click();  
+    cy.get(Clients.threedoticon).first().click({force:true});   // Choosing the first element from many identified elements
     cy.selectOption(Clients.ViewEditButton, ClientsTestData.HideClientButton); 
     cy.get(Clients.HideClientButton).click();
+    cy.screenshot("Clients/SS0013/full-page");
+    cy.get(Clients.Clientlabel).should("be.visible").should("have.text", ClientsTestData.Clientlabel);
     cy.get(Clients.ToastMessage).should("be.visible").should("have.text", ClientsTestData.ClientToastMessage);
     cy.screenshot("Clients/SS004/full-page");
 
     // Toggle the hidden clients view
-    cy.get(Clients.HideClientsToggleButton).click();
+    cy.get(Clients.HideClientsToggleButton).click({force:true});
+    cy.get(Clients.Clientlabel).should("be.visible").should("have.text", ClientsTestData.Clientlabel);
+    cy.screenshot("Clients/SS0012/full-page");
     cy.get('@clientTableFirstName').then((clientTableFirstName) => {
       searchAcrossPages(clientTableFirstName);
     });
@@ -117,7 +125,7 @@ describe("Sign-up Process", () => {
           .then(($nextPage) => {
             if ($nextPage.length) {
               cy.log(`Going to the next page: ${currentPage + 1}`);
-              cy.wrap($nextPage).click().then(() => {
+              cy.wrap($nextPage).click({force:true}).then(() => {
                 searchAcrossPages(expectedValue, currentPage + 1, maxPageLimit); // Recursive call for the next page
               });
             } else {

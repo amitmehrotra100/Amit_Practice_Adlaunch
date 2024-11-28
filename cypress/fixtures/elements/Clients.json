@@ -28,5 +28,6 @@
     "CellsActualValues": ":nth-child(1)  :nth-child(2) > .flex > .text-gray  span",
     "PaginationSelector": "ul[aria-label='Pagination'] li a",
     "ViewEditButton" : "[id*=headlessui-menu-item-]",
-    "SelectBusinessNichepopup": ".mr-3"
+    "SelectBusinessNichepopup": ".mr-3",
+    "Clientlabel": ".me-8"
 }

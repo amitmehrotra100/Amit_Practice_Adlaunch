@@ -10,5 +10,6 @@
     "HideClientButton": "Hide Client",
     "NicheToastMessage": "Niche updated successfully",
     "ClientToastMessage": "Client Hidden Successfully!",
-    "NicheData": "Auto Dealers"
+    "NicheData": "Auto Dealers",
+    "Clientlabel": "Clients"
 }
