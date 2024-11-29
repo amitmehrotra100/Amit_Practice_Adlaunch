@@ -1,4 +1,4 @@
-import Clients from "../../fixtures/elements/Clients.json";
+import Clients from "../../fixtures/elements/clients.json";
 import ClientsTestData from "../../fixtures/testdata/clientstestdata.json";
 import loginTestData from "../../fixtures/testdata/logintestdata.json";
 
@@ -18,14 +18,15 @@ describe("Sign-up Process", () => {
     cy.get(Clients.threedoticon).first().click({force:true}); // Choosing the first element from many identified elements 
     cy.selectOption(Clients.ViewEditButton, ClientsTestData.ViewEditClient);
     // Select Niche and Save
-    cy.get(Clients.Niche).last().should('be.visible').click();
+    cy.get(Clients.BusinessNiche).should('be.visible').click();
     cy.get(Clients.SaveButton).click();
     cy.screenshot("Clients/SS001/full-page");
 
     // Search for a Business Niche
-    cy.get(Clients.BusinessNiche).last().should("be.visible").click();
+    cy.get(Clients.BusinessNiche).should("be.visible").click();
     cy.get(Clients.SearchNiche).should("be.visible").type(ClientsTestData.NicheData);
     cy.selectOption(Clients.NicheList, ClientsTestData.NicheListData);
+    cy.get(Clients.BusinessNicheTextbox).should("have.text",ClientsTestData.NicheData);
     cy.screenshot("Clients/SS002/full-page");
 
     // Save Niche
