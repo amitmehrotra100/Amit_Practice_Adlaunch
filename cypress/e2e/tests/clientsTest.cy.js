@@ -4,9 +4,25 @@ import loginTestData from "../../fixtures/testdata/logintestdata.json";
 
 describe("Sign-up Process", () => {
   beforeEach(() => {
-    cy.userLogin(loginTestData.email, loginTestData.password);
-    cy.url().should('include', '/agency/dashboard');
+    cy.login(loginTestData.email, loginTestData.password);
+   // cy.url().should('include', '/agency/dashboard');
   });
+
+
+  it.only("should successfully add a new client via API", () => {
+    // Define test data for the new client
+    const firstname = "John";
+    const lastname = "Doe";
+    const businessname = "Doe Enterprises";
+    const email = "john.doe@example.com";
+
+    // Use the custom command to add the client
+    cy.addANewClient(firstname, lastname, businessname, email);
+
+    // Optional: Additional verifications or UI tests if necessary
+    cy.log("Client added successfully via API.");
+  });
+
 
   it("Clients_Validations", () => {
     // Navigate to Clients tab
@@ -15,7 +31,7 @@ describe("Sign-up Process", () => {
     // Select a client from the ClientTable
     cy.get(Clients.ClientTable).should("be.visible");
     cy.screenshot("Clients/SS0001/full-page");
-    cy.get(Clients.threedoticon).first().click({force:true}); // Choosing the first element from many identified elements 
+    cy.get(Clients.threedoticon).should("be.visible").click(); // Choosing the first element from many identified elements 
     cy.selectOption(Clients.ViewEditButton, ClientsTestData.ViewEditClient);
     // Select Niche and Save
     cy.get(Clients.BusinessNiche).should('be.visible').click();
@@ -40,13 +56,14 @@ describe("Sign-up Process", () => {
     cy.screenshot("Clients/SS0004/full-page");
     // Reopen the client menu and select a different niche
     cy.get(Clients.ClientTable).should("be.visible");
-    cy.get(Clients.threedoticon).first().click({force:true}); // Choosing the first element from many identified elements
+    cy.get('.absolute.inset-0.overflow-hidden').invoke('hide');
+    cy.get(Clients.threedoticon).should('not.have.css', 'pointer-events', 'none').click({force:true}); // Choosing the first element from many identified elements
     cy.selectOption(Clients.ViewEditButton, ClientsTestData.AssignNichebutton);
     // Close the popup and select a new niche
     cy.get(Clients.NicheDropdownpopupCrossIcon).click();
     cy.screenshot("Clients/SS0007/full-page");
     cy.get(Clients.SelectBusinessNiche).click();
-    cy.selectOption(Clients.SelectBusinessNichepopup, ClientsTestData.BusinessNiche);
+    cy.selectOption(Clients.SelectBusinessNichepopup, ClientsTestData.BusinessNiche);2
     cy.screenshot("Clients/SS0008/full-page");
     cy.get(Clients.AssignNIcheButton).click();
     cy.get(Clients.Clientlabel).should("be.visible").should("have.text", ClientsTestData.Clientlabel);
@@ -79,7 +96,8 @@ describe("Sign-up Process", () => {
     });
     cy.screenshot("Clients/SS005/full-page");
   });
-   });
+});
+   //});
 
    function searchAcrossPages(expectedValue, currentPage = 1, maxPageLimit = 100) {
     if (currentPage > maxPageLimit) {

@@ -9,7 +9,7 @@
     "NicheList": ".ml-3.flex-1",
     "ToastMessage": "div[role='alert'] div:nth-child(2)",
     "ClientsTableNiche": "span[data-tooltip-id='contact-businessName-Auto Dealers']",
-    "threedoticon": ".h-7",
+    "threedoticon": "tr[class*='h-[50px]'][class*='cursor-default']:nth-of-type(1) > td:last-child",
     "AssignNiche": "button[id='headlessui-menu-item-\\:rg\\:']",
     "ClientMenudropdown": "button[role='menuitem']",
     "NicheDropdownpopupCrossIcon":".px-6 [id*=headlessui-listbox-button-] .w-5" ,
