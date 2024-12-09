@@ -3,25 +3,29 @@ import ClientsTestData from "../../fixtures/testdata/clientstestdata.json";
 import loginTestData from "../../fixtures/testdata/logintestdata.json";
 
 describe("Sign-up Process", () => {
-  beforeEach(() => {
-    cy.login(loginTestData.email, loginTestData.password);
-   // cy.url().should('include', '/agency/dashboard');
-  });
-
+  // beforeEach(() => {
+  //   cy.login(loginTestData.email, loginTestData.password);
+  //  // cy.url().should('include', '/agency/dashboard');
+  // });
+  const businessname = "";
 
   it.only("should successfully add a new client via API", () => {
+    cy.login(loginTestData.email, loginTestData.password);
     // Define test data for the new client
-    const firstname = "John";
-    const lastname = "Doe";
-    const businessname = "Doe Enterprises";
-    const email = "john.doe@example.com";
+    const firstname = "skjADIUGaduasfafadadfay";
+    const lastname = "sqwiruyqwfolsfsfADadfray";
+    const businessname = "ZMCKBasiufhsasfasfADadfay";
+    const email = "john+58.doe@example.com";
 
     // Use the custom command to add the client
     cy.addANewClient(firstname, lastname, businessname, email);
 
     // Optional: Additional verifications or UI tests if necessary
     cy.log("Client added successfully via API.");
+    searchAcrossPages(businessname);
   });
+
+  
 
 
   it("Clients_Validations", () => {
@@ -108,7 +112,7 @@ describe("Sign-up Process", () => {
     cy.log(`Searching for "${expectedValue}" on page ${currentPage}`);
   
     // Check if the expected value exists on the current page
-    cy.get(Clients.CellsActualValues).then(($cells) => {
+    cy.get(Clients.CellsActualValues, { timeout: 30000 }).should("be.visible").then(($cells) => {
       const values = [];
   
       // Loop through each cell and trim whitespace

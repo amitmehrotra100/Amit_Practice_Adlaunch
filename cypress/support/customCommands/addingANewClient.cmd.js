@@ -14,11 +14,13 @@ Cypress.Commands.add("addANewClient", (firstname, lastname, businessname, email)
       cy.log("Full Response:", response.body);
       expect(response.body.status).to.eq(200);
       
-      const white_label_url = response.body.data?.white_label_url;
-      cy.log("White Label URL:", white_label_url);
-      cy.wrap(white_label_url).as('whiteLabelUrl');
+      const clienttoken = response.body.data?.token;
+      cy.log (clienttoken);
+      //cy.log("White Label URL:", white_label_url);
+      cy.wrap(clienttoken).as('token1234');
     cy.request({
-      url: `${white_label_url}/signup`,
+      //https://app-qaapi.adlaunch.io/api/v1/agency/c3bb95d20b52870a6662554e7310732381/client/signup
+      url: `${apiUrl}/agency/${clienttoken}/client/signup`,
       method: "POST",
       headers: {
         Accept: "application/json", 
